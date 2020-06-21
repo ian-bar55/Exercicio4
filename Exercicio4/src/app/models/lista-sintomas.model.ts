@@ -1,6 +1,6 @@
 import { Sintoma } from './sintoma.model';
 
 export class ListaSintomas{
-    chave: string;
+    key: string;
     sintoma: Sintoma;
 }

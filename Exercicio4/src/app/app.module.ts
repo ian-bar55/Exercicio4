@@ -10,6 +10,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
+import { IonicStorageModule } from '@ionic/storage';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +21,11 @@ import { environment } from 'src/environments/environment';
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    IonicStorageModule.forRoot({
+      name:"__mydb",
+        driverOrder: ['indexeddb','sqlite','websql']
+    })
   ],
   providers: [
     StatusBar,
@@ -27,6 +33,8 @@ import { environment } from 'src/environments/environment';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AngularFireModule,
     AngularFireAuth,
+    DatePipe
+    
   ],
   bootstrap: [AppComponent]
 })

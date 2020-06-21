@@ -5,5 +5,46 @@
 </ion-header>
 
 <ion-content>
+  <ion-list *ngIf="sintomas">
+    <ion-card *ngFor="let sintomaKey of sintomas">
+      <ion-card-header>
+        <h1>{{ sintomaKey.sintoma.descricao }} </h1>
+      </ion-card-header>
 
+      <ion-card-content>
+        <ion-text>{{ sintomaKey.sintoma.intensidade }} - {{ sintomaKey.sintoma.data | date: 'dd/MM/yyyy' }}</ion-text>
+      </ion-card-content>
+
+      <ion-row text-center>
+        <ion-col>
+          <ion-button (click)="editarSintoma(sintomaKey)">
+            <ion-icon name="create"></ion-icon>
+            <ion-text>Editar</ion-text>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="removerSintoma(sintomaKey)">            
+            <ion-icon name="trash"></ion-icon>
+            <ion-text>Excluir</ion-text>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>  
+
+    <ion-row *ngIf="sintomas.length == 0">
+      <ion-col size="12" class="ion-text-center">
+        <ion-text color="primary">
+          <h2>Você não tem nenhum sintoma adicionado</h2>
+        </ion-text>
+        <ion-text color="danger">
+            <h3>:(</h3>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" padding slot="fixed">
+    <ion-fab-button>
+       <ion-icon name="add" (click)="addSintoma()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
